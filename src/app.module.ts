@@ -1,14 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
-import { ReposController } from './repos/repos.controller';
-import { ReposService } from './repos/repos.service';
-import { ReviewsController } from './reviews/reviews.controller';
-import { ReviewsService } from './reviews/reviews.service';
-
+import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { UserModule } from './users/user.module';
 @Module({
-  imports: [],
-  controllers: [UsersController, ReposController, ReviewsController],
-  providers: [UsersService, ReposService, ReviewsService],
+  imports: [MikroOrmModule.forRoot(), UserModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
