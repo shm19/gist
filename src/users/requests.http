@@ -18,9 +18,14 @@ Content-Type: application/json
   "password": "JohnDoe123"
 }
 
+### get me
+GET http://localhost:3000/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
+
+
 ### Get all users
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4NjI5NDQ1LCJleHAiOjE2NjkyMzQyNDV9.QT4CtV6Cmp18dK93z-I7h2hKttVSxRhfJwIMgUZClPA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MDU5LCJleHAiOjE2Njk1NjM4NTl9.1IwC6S4Qj-pEeYrmtbNB5V4DAI0nDKA2xhkksBglhpE
 
 ### Ger user by id 
 GET http://localhost:3000/users/10

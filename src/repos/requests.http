@@ -1,12 +1,15 @@
 ### Get all repos
 GET http://localhost:3000/repos
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
 ### Get a repo
 GET http://localhost:3000/repos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
+
 
 ### Create a repo
 POST http://localhost:3000/repos
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
 
 {
   "name": "repo1",
@@ -16,6 +19,7 @@ Content-Type: application/json
 ### Update a repo
 PATCH  http://localhost:3000/repos/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
 
 {
   "content":"new content 2"
@@ -23,3 +27,4 @@ Content-Type: application/json
 
 ### Delete a repo
 DELETE http://localhost:3000/repos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
