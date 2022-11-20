@@ -19,6 +19,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 import { JwtPayload } from './jwt-payload.interface';
 import { AdminGuard } from 'src/guards/admin-guard';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from './user.entity';
 
 @Controller('users')
 export class UserController {
@@ -38,6 +40,13 @@ export class UserController {
   @Get('/signout')
   signout(): Promise<JwtPayload> {
     return this.userService.signout();
+  }
+
+  @UseInterceptors(serialize(ResponseUserDto))
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/me')
+  getMe(@CurrentUser() user: User) {
+    return user;
   }
 
   @UseGuards(AdminGuard)
