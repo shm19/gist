@@ -1,0 +1,25 @@
+### Get all repos
+GET http://localhost:3000/repos
+
+### Get a repo
+GET http://localhost:3000/repos/1
+
+### Create a repo
+POST http://localhost:3000/repos
+Content-Type: application/json
+
+{
+  "name": "repo1",
+  "content":"new content"
+}
+
+### Update a repo
+PATCH  http://localhost:3000/repos/1
+Content-Type: application/json
+
+{
+  "content":"new content 2"
+}
+
+### Delete a repo
+DELETE http://localhost:3000/repos/1

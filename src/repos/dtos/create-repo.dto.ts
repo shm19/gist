@@ -1,11 +1,11 @@
-import { IsEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateRepoDto {
-  @IsEmpty()
+  @IsNotEmpty()
   @IsString()
   name: string;
 
-  @IsEmpty()
+  @IsNotEmpty()
   @IsString()
   content: string;
 }
