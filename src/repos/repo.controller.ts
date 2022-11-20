@@ -6,13 +6,15 @@ import {
   Delete,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from 'src/guards/admin-guard';
 import { CreateRepoDto } from './dtos/create-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { RepoService } from './repo.service';
 
-// for know its ok after that add user auth and then authrozation then go to the model
-// and its actual functionality
+@UseGuards(AuthGuard('jwt'), AdminGuard)
 @Controller('repos')
 export class RepoController {
   constructor(private readonly repoService: RepoService) {}
