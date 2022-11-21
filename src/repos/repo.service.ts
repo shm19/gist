@@ -1,6 +1,12 @@
 import { wrap } from '@mikro-orm/core';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { validate } from 'class-validator';
+import { User } from '../users/user.entity';
 import { CreateRepoDto } from './dtos/create-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { Repo } from './repo.entity';
@@ -22,9 +28,8 @@ export class RepoService {
     });
   }
 
-  async create(repo: CreateRepoDto) {
+  async create(repo: CreateRepoDto, user: User) {
     // @checkme: difference betwene create and new
-    // const newRepo = this.repoRepository.create(repo);
     const newRepo = new Repo(repo.name, repo.content);
     const errors = await validate(newRepo);
     if (errors.length > 0) {
@@ -36,6 +41,7 @@ export class RepoService {
         HttpStatus.BAD_REQUEST,
       );
     }
+    newRepo.user = user;
     this.repoRepository.persistAndFlush(newRepo);
     return newRepo;
   }
