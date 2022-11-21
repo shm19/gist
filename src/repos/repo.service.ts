@@ -5,6 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { writeFile, stat, mkdir } from 'fs/promises';
 import { validate } from 'class-validator';
 import { User } from '../users/user.entity';
 import { CreateRepoDto } from './dtos/create-repo.dto';
@@ -68,5 +69,12 @@ export class RepoService {
   delete(id: number) {
     const repoRef = this.repoRepository.getReference(id);
     return this.repoRepository.removeAndFlush(repoRef);
+  }
+
+  async upload(file: any, id: number, line: number) {
+    const dirPath = `${__dirname}/../../uploads`;
+    const filePath = `${dirPath}/${id}-${line}`;
+    await stat(dirPath).catch(async () => await mkdir(dirPath));
+    writeFile(filePath, file.buffer);
   }
 }

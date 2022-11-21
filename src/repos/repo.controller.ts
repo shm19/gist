@@ -10,10 +10,9 @@ import {
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
-import { writeFile, stat, mkdir } from 'fs/promises';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { serialize } from 'src/interceptors/serialze.interceptor';
+import { serialize } from '../interceptors/serialze.interceptor';
 import { AdminGuard } from '../guards/admin-guard';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { CreateRepoDto } from './dtos/create-repo.dto';
@@ -28,12 +27,17 @@ export class RepoController {
   constructor(private readonly repoService: RepoService) {}
 
   @UseInterceptors(FileInterceptor('file'))
-  @Post('upload')
-  async upload(@UploadedFile() file: Express.Multer.File) {
-    await stat(`${__dirname}/../../uploads`).catch(
-      async () => await mkdir(`${__dirname}/../../uploads`),
+  @Post('upload/:id')
+  async upload(
+    @UploadedFile() file: Express.Multer.File,
+    @Body('line') line: string,
+    @Param('id') id: string,
+  ) {
+    return this.repoService.upload(
+      file,
+      Number.parseInt(id),
+      Number.parseInt(line),
     );
-    writeFile(`${__dirname}/../../uploads/${file.originalname}`, file.buffer);
   }
 
   @Get()
