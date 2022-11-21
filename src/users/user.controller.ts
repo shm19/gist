@@ -11,14 +11,14 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { serialize } from 'src/interceptors/serialze.interceptor';
+import { serialize } from '../interceptors/serialze.interceptor';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ResponseUserDto } from './dto/response-user.dto';
 import { SignInUserDto } from './dto/signin-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 import { JwtPayload } from './jwt-payload.interface';
-import { AdminGuard } from 'src/guards/admin-guard';
+import { AdminGuard } from '../guards/admin-guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
 

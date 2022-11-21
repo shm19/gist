@@ -7,13 +7,18 @@ import {
   Param,
   Body,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AdminGuard } from 'src/guards/admin-guard';
+import { serialize } from 'src/interceptors/serialze.interceptor';
+import { AdminGuard } from '../guards/admin-guard';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { CreateRepoDto } from './dtos/create-repo.dto';
+import { ResponseRepoDto } from './dtos/response-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { RepoService } from './repo.service';
 
+@UseInterceptors(serialize(ResponseRepoDto))
 @UseGuards(AuthGuard('jwt'), AdminGuard)
 @Controller('repos')
 export class RepoController {
@@ -30,8 +35,8 @@ export class RepoController {
   }
 
   @Post()
-  create(@Body() repo: CreateRepoDto) {
-    return this.repoService.create(repo);
+  create(@Body() repo: CreateRepoDto, @CurrentUser() user) {
+    return this.repoService.create(repo, user);
   }
 
   @Patch(':id')
