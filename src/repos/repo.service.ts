@@ -14,8 +14,12 @@ export class RepoService {
     return this.repoRepository.findAll();
   }
 
-  findOne(id: number) {
-    return this.repoRepository.findOne(id);
+  async findOne(id: number) {
+    return this.repoRepository.findOneOrFail(id).catch(() => {
+      throw new NotFoundException({
+        message: 'Repo not found',
+      });
+    });
   }
 
   async create(repo: CreateRepoDto) {
