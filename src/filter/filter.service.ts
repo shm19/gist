@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ArgumentsHost, ExceptionFilter, HttpException } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { LoggerService } from 'src/logger/logger.service';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class FilterService implements ExceptionFilter {

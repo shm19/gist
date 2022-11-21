@@ -1,6 +1,14 @@
-import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryKey,
+  Property,
+} from '@mikro-orm/core';
 import { User } from '../users/user.entity';
 import { RepoRepository } from './repo.repository';
+import { File } from '../files/file.entity';
 
 @Entity({ customRepository: () => RepoRepository })
 export class Repo {
@@ -33,4 +41,8 @@ export class Repo {
   // owner side of the relationship
   @ManyToOne(() => User)
   user: User;
+
+  // inverse side of the relationship
+  @OneToMany(() => File, (file) => file.repo)
+  files = new Collection<File>(this);
 }

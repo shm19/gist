@@ -1,13 +1,13 @@
 import { wrap } from '@mikro-orm/core';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { validate } from 'class-validator';
 import * as bcrypt from 'bcrypt';
 import { JwtPayload } from './jwt-payload.interface';
-import { SignInUserDto } from './dto/signin-user.dto';
+import { SignInUserDto } from './dtos/signin-user.dto';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()

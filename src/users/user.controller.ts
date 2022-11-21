@@ -12,10 +12,10 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { serialize } from '../interceptors/serialze.interceptor';
-import { CreateUserDto } from './dto/create-user.dto';
-import { ResponseUserDto } from './dto/response-user.dto';
-import { SignInUserDto } from './dto/signin-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { ResponseUserDto } from './dtos/response-user.dto';
+import { SignInUserDto } from './dtos/signin-user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserService } from './user.service';
 import { JwtPayload } from './jwt-payload.interface';
 import { AdminGuard } from '../guards/admin-guard';
