@@ -1,9 +1,13 @@
 import {
+  Collection,
   Entity,
   EntityRepositoryType,
+  OneToMany,
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
+import { Repo } from '../repos/repo.entity';
+
 import { UserRepository } from './user.repository';
 
 @Entity({ customRepository: () => UserRepository })
@@ -34,4 +38,8 @@ export class User {
 
   @Property()
   password: string;
+
+  // inverse side of the relationship
+  @OneToMany(() => Repo, (repo) => repo.user)
+  repos = new Collection<Repo>(this);
 }

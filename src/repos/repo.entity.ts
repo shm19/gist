@@ -1,4 +1,5 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { User } from '../users/user.entity';
 import { RepoRepository } from './repo.repository';
 
 @Entity({ customRepository: () => RepoRepository })
@@ -28,4 +29,8 @@ export class Repo {
     onUpdate: () => new Date(),
   })
   updatedAt: Date;
+
+  // owner side of the relationship
+  @ManyToOne(() => User)
+  user: User;
 }
