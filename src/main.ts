@@ -1,12 +1,17 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpErrorFilter } from './filters/http-error.filter';
+import { FilterService } from './filter/filter.service';
+import { LoggerService } from './logger/logger.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+  });
+
+  app.useLogger(app.get(LoggerService));
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalFilters(new HttpErrorFilter(new Logger()));
+  app.useGlobalFilters(app.get(FilterService));
   await app.listen(3000);
 }
 bootstrap();
