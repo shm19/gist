@@ -6,6 +6,13 @@ import { FileRepository } from './file.repository';
 export class File {
   EntityRepositoryType?: FileRepository;
 
+  constructor(name: string, extension: string, number: number, repo: Repo) {
+    this.name = name;
+    this.extension = extension;
+    this.number = number;
+    this.repo = repo;
+  }
+
   @PrimaryKey()
   id: number;
 
@@ -14,6 +21,9 @@ export class File {
 
   @Property()
   extension: string;
+
+  @Property()
+  number: number;
 
   // owner side of the relationship
   @ManyToOne(() => Repo)
