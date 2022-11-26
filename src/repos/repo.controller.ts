@@ -30,14 +30,9 @@ export class RepoController {
   @Post('upload/:id')
   async upload(
     @UploadedFile() file: Express.Multer.File,
-    @Body('line') line: string,
     @Param('id') id: string,
   ) {
-    return this.repoService.upload(
-      file,
-      Number.parseInt(id),
-      Number.parseInt(line),
-    );
+    return this.repoService.upload(file, Number.parseInt(id));
   }
 
   @Get()

@@ -19,6 +19,7 @@ export class FilterService implements ExceptionFilter {
       path: request.url,
       method: request.method,
       message: exception.message || null,
+      stack: exception.stack || null,
     };
 
     this.logger.error(

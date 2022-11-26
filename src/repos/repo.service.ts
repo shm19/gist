@@ -37,10 +37,10 @@ export class RepoService {
         populate: ['files'],
       })
       .catch(() => {
-      throw new NotFoundException({
-        message: 'Repo not found',
+        throw new NotFoundException({
+          message: 'Repo not found',
+        });
       });
-    });
     return { ...repo, files: repo.files.toArray() };
   }
 
@@ -85,10 +85,23 @@ export class RepoService {
     return this.repoRepository.removeAndFlush(repoRef);
   }
 
-  async upload(file: any, id: number, line: number) {
-    const dirPath = `${__dirname}/../../uploads`;
-    const filePath = `${dirPath}/${id}-${line}`;
-    await stat(dirPath).catch(async () => await mkdir(dirPath));
+  async upload(file: Express.Multer.File, id: number) {
+    const dirPath = `${__dirname}/../../uploads/${id}`;
+
+    const repo = await await this.repoRepository.findOneOrFail(id, {
+      populate: ['files'],
+    });
+
+    const newFileNumber = repo.files.length + 1;
+    const [fileName, extension] = file.originalname.split('.');
+    const filePath = `${dirPath}/${newFileNumber}.${extension}`;
+
+    const newFile = new File(fileName, extension, newFileNumber, repo);
+
+    await stat(dirPath).catch(
+      async () => await mkdir(dirPath, { recursive: true }),
+    );
     writeFile(filePath, file.buffer);
+    return this.fileRepository.persistAndFlush(newFile);
   }
 }
