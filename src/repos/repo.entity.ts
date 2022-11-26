@@ -29,6 +29,9 @@ export class Repo {
   @Property()
   content: string;
 
+  @Property({ default: false })
+  isPinned: boolean;
+
   @Property({ default: Date.now() })
   createdAt: Date;
 

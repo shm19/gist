@@ -122,4 +122,28 @@ export class RepoService {
     const result = await user.favorites.init();
     return result.toArray();
   }
+
+  togglePin(id: number, user: User) {
+    return this.repoRepository
+      .findOneOrFail({ id, user })
+      .then((repo) => {
+        repo.isPinned = !repo.isPinned;
+        return this.repoRepository.flush();
+      })
+      .catch(() => {
+        throw new NotFoundException({
+          message: 'Repo not found',
+        });
+      });
+  }
+
+  async getPins(user: User) {
+    const repos = await this.repoRepository.find(
+      { isPinned: true, user },
+      { populate: ['files'] },
+    );
+    return repos.map((repo) => {
+      return { ...repo, files: repo.files.toArray() };
+    });
+  }
 }

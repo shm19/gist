@@ -44,9 +44,6 @@ export class User {
   @OneToMany(() => Repo, (repo) => repo.user)
   repos = new Collection<Repo>(this);
 
-  @OneToMany(() => Repo, (repo) => repo.user)
-  pinRepos = new Collection<Repo>(this);
-
   @ManyToMany(() => Repo)
   favorites = new Collection<Repo>(this);
 }

@@ -19,6 +19,15 @@ GET http://localhost:3000/repos/favorites
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
 
 
+### toggle pin a repo
+PATCH  http://localhost:3000/repos/pins/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
+
+
+### get pin repos
+GET http://localhost:3000/repos/pins
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY4OTU5MjYwLCJleHAiOjE2Njk1NjQwNjB9.F2RGC_wKl6H-6Qo-3MVqZJShGeclvf5ARM5rq3zvgfY
+
 
 ### Create a repo
 POST http://localhost:3000/repos

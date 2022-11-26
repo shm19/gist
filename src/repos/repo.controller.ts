@@ -42,6 +42,16 @@ export class RepoController {
     return this.repoService.getFavorites(user);
   }
 
+  @Patch('pins/:id')
+  unpin(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.repoService.togglePin(Number.parseInt(id), user);
+  }
+
+  @Get('pins')
+  getPins(@CurrentUser() user: User) {
+    return this.repoService.getPins(user);
+  }
+
   @UseInterceptors(FileInterceptor('file'))
   @Post('upload/:id')
   async upload(
