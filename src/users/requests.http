@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "username":"johndoe8",
-  "email": "johnDoe8@gmail.com",
+  "username":"johndoe20",
+  "email": "johnDoe20@gmail.com",
   "password": "JohnDoe123"
 }
 
@@ -14,7 +14,7 @@ POST http://localhost:3000/users/signin
 Content-Type: application/json
 
 {
-  "username":"johndoe8",
+  "username":"johndoe20",
   "password": "JohnDoe123"
 }
 

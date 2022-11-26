@@ -22,20 +22,29 @@ export class RepoService {
     private readonly fileRepository: FileRepository,
   ) {}
 
-  async findAll() {
-    const repos = await this.repoRepository.findAll({
-      populate: ['files'],
-    });
+  async findAll(user: User) {
+    const repos = await this.repoRepository.find(
+      {
+        $or: [{ user }, { isPublic: true }],
+      },
+      { populate: ['files'] },
+    );
+
     return repos.map((repo) => {
       return { ...repo, files: repo.files.toArray() };
     });
   }
 
-  async findOne(id: number) {
+  async findOne(id: number, user: User) {
     const repo = await this.repoRepository
-      .findOneOrFail(id, {
-        populate: ['files'],
-      })
+      .findOneOrFail(
+        {
+          $or: [{ user }, { isPublic: true }],
+        },
+        {
+          populate: ['files'],
+        },
+      )
       .catch(() => {
         throw new NotFoundException({
           message: 'Repo not found',
@@ -61,8 +70,8 @@ export class RepoService {
     return { ...newRepo, files: [] };
   }
 
-  async update(id: number, repo: UpdateRepoDto) {
-    const foundRepo = await this.findOne(id);
+  async update(id: number, user: User, repo: UpdateRepoDto) {
+    const foundRepo = await this.findOne(id, user);
     if (!foundRepo) {
       throw new HttpException(
         {
