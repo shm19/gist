@@ -104,4 +104,15 @@ export class RepoService {
     writeFile(filePath, file.buffer);
     return this.fileRepository.persistAndFlush(newFile);
   }
+
+  favorite(id: number, user: User) {
+    const repo = this.repoRepository.getReference(id);
+    user.favorites.add(repo);
+    return this.repoRepository.flush();
+  }
+
+  async getFavorites(user: User) {
+    const result = await user.favorites.init();
+    return result.toArray();
+  }
 }

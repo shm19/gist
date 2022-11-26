@@ -2,6 +2,7 @@ import {
   Collection,
   Entity,
   EntityRepositoryType,
+  ManyToMany,
   OneToMany,
   PrimaryKey,
   Property,
@@ -42,4 +43,7 @@ export class User {
   // inverse side of the relationship
   @OneToMany(() => Repo, (repo) => repo.user)
   repos = new Collection<Repo>(this);
+
+  @ManyToMany(() => Repo)
+  favorites = new Collection<Repo>(this);
 }

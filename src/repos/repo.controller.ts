@@ -19,12 +19,23 @@ import { CreateRepoDto } from './dtos/create-repo.dto';
 import { ResponseRepoDto } from './dtos/response-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { RepoService } from './repo.service';
+import { User } from 'src/users/user.entity';
 
 @UseInterceptors(serialize(ResponseRepoDto))
 @UseGuards(AuthGuard('jwt'), AdminGuard)
 @Controller('repos')
 export class RepoController {
   constructor(private readonly repoService: RepoService) {}
+
+  @Post('favorites/:id')
+  favorite(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.repoService.favorite(Number.parseInt(id), user);
+  }
+
+  @Get('favorites')
+  getFavorites(@CurrentUser() user: User) {
+    return this.repoService.getFavorites(user);
+  }
 
   @UseInterceptors(FileInterceptor('file'))
   @Post('upload/:id')
