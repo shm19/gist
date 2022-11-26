@@ -18,6 +18,12 @@ export class ResponseRepoDto {
   @Expose()
   updatedAt: Date;
 
+  @Expose()
+  isPinned: boolean;
+
+  @Expose()
+  isPublic: boolean;
+
   @Type(() => ResponseUserDto)
   @Expose()
   user: ResponseUserDto;

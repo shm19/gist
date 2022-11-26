@@ -45,7 +45,7 @@ export class RepoService {
   }
 
   async create(repo: CreateRepoDto, user: User) {
-    const newRepo = new Repo(repo.name, repo.content);
+    const newRepo = new Repo(repo.name, repo.content, repo?.isPublic);
     const errors = await validate(newRepo);
     if (errors.length > 0) {
       throw new HttpException(
@@ -57,8 +57,8 @@ export class RepoService {
       );
     }
     newRepo.user = user;
-    this.repoRepository.persistAndFlush(newRepo);
-    return newRepo;
+    await this.repoRepository.persistAndFlush(newRepo);
+    return { ...newRepo, files: [] };
   }
 
   async update(id: number, repo: UpdateRepoDto) {

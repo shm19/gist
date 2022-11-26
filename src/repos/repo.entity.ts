@@ -15,9 +15,10 @@ export class Repo {
   EntityRepositoryType?: RepoRepository;
 
   // @fixme: can i use public or private field here at constructor?
-  constructor(name: string, content: string) {
+  constructor(name: string, content: string, isPublic?: boolean) {
     this.name = name;
     this.content = content;
+    this.isPublic = isPublic ?? true;
   }
 
   @PrimaryKey()
@@ -31,6 +32,9 @@ export class Repo {
 
   @Property({ default: false })
   isPinned: boolean;
+
+  @Property({ default: true })
+  isPublic: boolean;
 
   @Property({ default: Date.now() })
   createdAt: Date;

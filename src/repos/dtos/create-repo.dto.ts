@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateRepoDto {
   @IsNotEmpty()
@@ -8,4 +8,9 @@ export class CreateRepoDto {
   @IsNotEmpty()
   @IsString()
   content: string;
+
+  @IsOptional()
+  @IsBoolean()
+  // add enum
+  isPublic: boolean;
 }
