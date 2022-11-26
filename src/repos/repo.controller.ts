@@ -32,6 +32,11 @@ export class RepoController {
     return this.repoService.favorite(Number.parseInt(id), user);
   }
 
+  @Patch('favorites/:id')
+  unfavorite(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.repoService.unfavorite(Number.parseInt(id), user);
+  }
+
   @Get('favorites')
   getFavorites(@CurrentUser() user: User) {
     return this.repoService.getFavorites(user);

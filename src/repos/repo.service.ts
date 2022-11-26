@@ -111,6 +111,13 @@ export class RepoService {
     return this.repoRepository.flush();
   }
 
+  async unfavorite(id: number, user: User) {
+    const repo = this.repoRepository.getReference(id);
+    await user.favorites.init();
+    user.favorites.remove(repo);
+    return this.repoRepository.flush();
+  }
+
   async getFavorites(user: User) {
     const result = await user.favorites.init();
     return result.toArray();
