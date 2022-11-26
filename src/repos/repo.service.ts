@@ -12,25 +12,39 @@ import { CreateRepoDto } from './dtos/create-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { Repo } from './repo.entity';
 import { RepoRepository } from './repo.repository';
+import { FileRepository } from 'src/files/file.repository';
+import { File } from 'src/files/file.entity';
 
 @Injectable()
 export class RepoService {
-  constructor(private readonly repoRepository: RepoRepository) {}
+  constructor(
+    private readonly repoRepository: RepoRepository,
+    private readonly fileRepository: FileRepository,
+  ) {}
 
-  findAll() {
-    return this.repoRepository.findAll();
+  async findAll() {
+    const repos = await this.repoRepository.findAll({
+      populate: ['files'],
+    });
+    return repos.map((repo) => {
+      return { ...repo, files: repo.files.toArray() };
+    });
   }
 
   async findOne(id: number) {
-    return this.repoRepository.findOneOrFail(id).catch(() => {
+    const repo = await this.repoRepository
+      .findOneOrFail(id, {
+        populate: ['files'],
+      })
+      .catch(() => {
       throw new NotFoundException({
         message: 'Repo not found',
       });
     });
+    return { ...repo, files: repo.files.toArray() };
   }
 
   async create(repo: CreateRepoDto, user: User) {
-    // @checkme: difference betwene create and new
     const newRepo = new Repo(repo.name, repo.content);
     const errors = await validate(newRepo);
     if (errors.length > 0) {
