@@ -1,6 +1,6 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
-import { File } from 'src/files/file.entity';
+import { File } from '../files/file.entity';
 import { UserModule } from '../users/user.module';
 import { RepoController } from './repo.controller';
 import { Repo } from './repo.entity';

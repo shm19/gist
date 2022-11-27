@@ -1,0 +1,11 @@
+### add tag to repo
+POST http://localhost:3000/tags/repo/1
+Content-Type: application/json
+
+{
+    "name": "nest"
+}
+
+
+### get all tags
+GET http://localhost:3000/tags

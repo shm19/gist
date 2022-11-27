@@ -12,9 +12,9 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { serialize } from 'src/interceptors/serialze.interceptor';
-import { CurrentUser } from 'src/users/decorators/current-user.decorator';
-import { User } from 'src/users/user.entity';
+import { serialize } from '../interceptors/serialze.interceptor';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '../users/user.entity';
 import { ResponseReviewDto } from './dtos/response-review.dto';
 import { ReviewService } from './review.service';
 

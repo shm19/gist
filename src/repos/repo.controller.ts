@@ -18,7 +18,7 @@ import { CreateRepoDto } from './dtos/create-repo.dto';
 import { ResponseRepoDto } from './dtos/response-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { RepoService } from './repo.service';
-import { User } from 'src/users/user.entity';
+import { User } from '../users/user.entity';
 
 @UseInterceptors(serialize(ResponseRepoDto))
 @UseGuards(AuthGuard('jwt'))

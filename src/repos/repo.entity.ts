@@ -1,6 +1,7 @@
 import {
   Collection,
   Entity,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryKey,
@@ -10,6 +11,7 @@ import { User } from '../users/user.entity';
 import { RepoRepository } from './repo.repository';
 import { File } from '../files/file.entity';
 import { Review } from '../review/review.entity';
+import { Tag } from '../tag/tag.entity';
 
 @Entity({ customRepository: () => RepoRepository })
 export class Repo {
@@ -56,4 +58,7 @@ export class Repo {
 
   @OneToMany(() => Review, (review) => review.repo)
   reviews = new Collection<Review>(this);
+
+  @ManyToMany(() => Tag)
+  tags = new Collection<Tag>(this);
 }

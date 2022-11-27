@@ -6,6 +6,7 @@ import { LoggerModule } from './logger/logger.module';
 import { FilterModule } from './filter/filter.module';
 import { FileModule } from './files/file.module';
 import { ReviewModule } from './review/review.module';
+import { TagModule } from './tag/tag.module';
 @Module({
   imports: [
     MikroOrmModule.forRoot(),
@@ -15,6 +16,7 @@ import { ReviewModule } from './review/review.module';
     FilterModule,
     FileModule,
     ReviewModule,
+    TagModule,
   ],
   controllers: [],
   providers: [],

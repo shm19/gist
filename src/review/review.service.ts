@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RepoRepository } from 'src/repos/repo.repository';
-import { User } from 'src/users/user.entity';
+import { RepoRepository } from '../repos/repo.repository';
+import { User } from '../users/user.entity';
 import { Review } from './review.entity';
 import { ReviewRepository } from './review.repository';
 

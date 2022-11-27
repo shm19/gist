@@ -12,8 +12,8 @@ import { CreateRepoDto } from './dtos/create-repo.dto';
 import { UpdateRepoDto } from './dtos/update-repo.dto';
 import { Repo } from './repo.entity';
 import { RepoRepository } from './repo.repository';
-import { FileRepository } from 'src/files/file.repository';
-import { File } from 'src/files/file.entity';
+import { FileRepository } from '../files/file.repository';
+import { File } from '../files/file.entity';
 
 @Injectable()
 export class RepoService {

@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { FileController } from './file.controller';
 import { FileService } from './file.service';
 import { File } from './file.entity';
-import { UserModule } from 'src/users/user.module';
+import { UserModule } from '../users/user.module';
 
 @Module({
   imports: [MikroOrmModule.forFeature([File]), FileModule, UserModule],
