@@ -1,0 +1,29 @@
+### add review to a repo
+POST http://localhost:3000/reviews/repos/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY5NTcyMTA2LCJleHAiOjE2NzAxNzY5MDZ9.4Yum46Dq3UYzTiheZaZHtR_bgXczEupWsf6ksQfSmqQ
+Content-Type: application/json
+
+{
+  "message": "This is a review"
+}
+
+### get reviews for a repo
+GET  http://localhost:3000/reviews/repos/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY5NTcyMTA2LCJleHAiOjE2NzAxNzY5MDZ9.4Yum46Dq3UYzTiheZaZHtR_bgXczEupWsf6ksQfSmqQ
+
+### get user repos
+GET  http://localhost:3000/reviews/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY5NTcyMTA2LCJleHAiOjE2NzAxNzY5MDZ9.4Yum46Dq3UYzTiheZaZHtR_bgXczEupWsf6ksQfSmqQ
+
+### update review
+PATCH http://localhost:3000/reviews/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY5NTcyMTA2LCJleHAiOjE2NzAxNzY5MDZ9.4Yum46Dq3UYzTiheZaZHtR_bgXczEupWsf6ksQfSmqQ
+Content-Type: application/json
+
+{
+  "message": "This is an updated review"
+}
+
+### delete review
+DELETE http://localhost:3000/reviews/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2U4IiwiaWF0IjoxNjY5NTcyMTA2LCJleHAiOjE2NzAxNzY5MDZ9.4Yum46Dq3UYzTiheZaZHtR_bgXczEupWsf6ksQfSmqQ

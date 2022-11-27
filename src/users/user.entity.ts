@@ -7,6 +7,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
+import { Review } from '../review/review.entity';
 import { Repo } from '../repos/repo.entity';
 
 import { UserRepository } from './user.repository';
@@ -46,4 +47,7 @@ export class User {
 
   @ManyToMany(() => Repo)
   favorites = new Collection<Repo>(this);
+
+  @OneToMany(() => Review, (review) => review.user)
+  reviews = new Collection<Review>(this);
 }

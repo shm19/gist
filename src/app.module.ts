@@ -5,6 +5,7 @@ import { ReposModule } from './repos/repo.module';
 import { LoggerModule } from './logger/logger.module';
 import { FilterModule } from './filter/filter.module';
 import { FileModule } from './files/file.module';
+import { ReviewModule } from './review/review.module';
 @Module({
   imports: [
     MikroOrmModule.forRoot(),
@@ -13,6 +14,7 @@ import { FileModule } from './files/file.module';
     LoggerModule,
     FilterModule,
     FileModule,
+    ReviewModule,
   ],
   controllers: [],
   providers: [],

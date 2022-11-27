@@ -9,6 +9,7 @@ import {
 import { User } from '../users/user.entity';
 import { RepoRepository } from './repo.repository';
 import { File } from '../files/file.entity';
+import { Review } from '../review/review.entity';
 
 @Entity({ customRepository: () => RepoRepository })
 export class Repo {
@@ -52,4 +53,7 @@ export class Repo {
   // inverse side of the relationship
   @OneToMany(() => File, (file) => file.repo)
   files = new Collection<File>(this);
+
+  @OneToMany(() => Review, (review) => review.repo)
+  reviews = new Collection<Review>(this);
 }
