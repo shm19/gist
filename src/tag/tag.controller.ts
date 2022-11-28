@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CreateTagDto } from './dtos/create-tag.dto';
 import { TagService } from './tag.service';
 
@@ -16,5 +16,8 @@ export class TagController {
     return this.tagService.getAllTags(name);
   }
 
+  @Get('/count')
+  countTags(@Query('name') name: string) {
+    return this.tagService.countTags(name);
   }
 }

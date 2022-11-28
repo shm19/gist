@@ -26,5 +26,12 @@ export class TagService {
     });
   }
 
+  async countTags(name: string) {
+    const count = await this.tagRepository.count({
+      name: {
+        $like: `%${name || ''}%`,
+      },
+    });
+    return { name: name || 'all', count };
   }
 }
