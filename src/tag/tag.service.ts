@@ -18,7 +18,13 @@ export class TagService {
     return this.tagRepository.persistAndFlush(newTag);
   }
 
-  getAllTags() {
-    return this.tagRepository.findAll();
+  getAllTags(name: string) {
+    return this.tagRepository.find({
+      name: {
+        $like: `%${name || ''}%`,
+      },
+    });
+  }
+
   }
 }

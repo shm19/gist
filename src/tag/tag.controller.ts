@@ -12,7 +12,9 @@ export class TagController {
   }
 
   @Get()
-  getAllTags() {
-    return this.tagService.getAllTags();
+  getAllTags(@Query('name') name: string) {
+    return this.tagService.getAllTags(name);
+  }
+
   }
 }
